@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FlightTracker • Carbon Impact Monitor</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div>
+      <div class="brand">
+        <div class="brand-icon">✈️</div>
+        <div>
+          <div class="brand-title">FlightTracker</div>
+          <div class="brand-sub">Carbon Impact Monitor</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a id="dashboardLink" class="nav-item active" href="#">Dashboard</a>
+        <button id="addFlightBtn" class="btn btn-ghost">＋ Add Flight</button>
+      </nav>
+    </div>
+    <div class="sidebar-cta">🌱 Reduce Your Carbon Footprint</div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <!-- Dashboard -->
+    <section id="dashboardSection">
+      <header class="page-header"><h1>Flight Dashboard</h1></header>
+      <section class="kpi-grid">
+        <div class="kpi kpi-blue"><div class="kpi-value" id="kpiFlights">0</div><div>Total Flights</div></div>
+        <div class="kpi kpi-red"><div class="kpi-value" id="kpiCO2">0 kg</div><div>Total CO₂</div></div>
+        <div class="kpi kpi-purple"><div class="kpi-value" id="kpiKm">0 km</div><div>Distance</div></div>
+        <div class="kpi kpi-green"><div class="kpi-value" id="kpiTrees">0</div><div>Trees</div></div>
+      </section>
+      <section class="content-grid">
+        <div class="card"><canvas id="co2Chart"></canvas></div>
+        <div class="card"><div class="card-title">Recent Flights</div><ul id="recentFlights" class="flight-list"></ul></div>
+      </section>
+    </section>
+
+    <!-- Add Flight -->
+    <section id="addFlightSection" class="hidden">
+      <header class="page-header"><h1>Add New Flight</h1></header>
+      <section class="content-grid">
+        <div class="card">
+          <form id="addFlightForm" class="form-grid">
+            <label>From <input type="text" name="from" required /></label>
+            <label>To <input type="text" name="to" required /></label>
+            <label>Date <input type="date" name="date" required /></label>
+            <label>Airline <input type="text" name="airline" /></label>
+            <label>Code <input type="text" name="code" /></label>
+            <label>Aircraft
+              <select name="aircraft">
+                <option value="narrow">Narrow</option>
+                <option value="wide">Wide</option>
+              </select>
+            </label>
+            <label>Cabin
+              <select name="cabin">
+                <option value="economy">Economy</option>
+                <option value="business">Business</option>
+                <option value="first">First</option>
+              </select>
+            </label>
+            <label>Distance (km) <input type="number" name="km" required /></label>
+            <button type="submit" class="btn-green">Add Flight</button>
+          </form>
+        </div>
+        <div class="card">
+          <div>📊 Emission Estimate</div>
+          <p id="estimateCO2">0 kg</p>
+          <p id="estimateMeta">Distance: 0 km • Trees: 0</p>
+        </div>
+        <div class="card">
+          <div>Put It In Perspective</div>
+          <div class="persp-box">🚗 <div>Car equivalent</div><div><span id="perspCar">0</span> km</div></div>
+          <div class="persp-box">🌲 <div>Trees needed</div><div><span id="perspTrees">0</span></div></div>
+          <div class="persp-box">🏠 <div>Home energy</div><div><span id="perspEnergy">0</span> months</div></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
